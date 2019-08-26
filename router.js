@@ -5,8 +5,8 @@ router.use(auth)
 
 //Authentication Middleware
 function auth(req,res,next) {
-    if (req.headers.Authorization !== process.env.SECRET) {
-        res.status(300).send({message: "Request missing Authorization header"})
+    if (req.headers.authorization !== process.env.SECRET) {
+        res.status(300).send({message: "Request missing authorization header"})
     } else {
         next();
     }

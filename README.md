@@ -1,10 +1,12 @@
 # black-pearl-server
 
 ## API Endpoints
-All endpoints (except for the sanity check- GET `/`) expect an Authorization header with the server's secret key
+Almost all endpoints expect an `authorization` header with the server's secret key
+
+Postman Collection: https://www.getpostman.com/collections/d3f481a7a1dd71907ae7
 
 ### GET `/`
-    - Returns a message saying the server is up
+    - Sanity Check- Returns a message saying the server is up
     - This is the only endpoint that doesn't need an auth header
 ### POST `/api/add-room`
     - Data can be sent via the body
