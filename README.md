@@ -1,15 +1,20 @@
 # black-pearl-server
 
 ## API Endpoints
-### POST `/add-room`
+All endpoints (except for the sanity check- GET `/`) expect an Authorization header with the server's secret key
+
+### GET `/`
+    - Returns a message saying the server is up
+    - This is the only endpoint that doesn't need an auth header
+### POST `/api/add-room`
     - Data can be sent via the body
     - Expects all required fields in the Rooms Database
-### PUT `/update-room`
+### PUT `/api/update-room`
     - Data can be sent via the body
     - Expects at least the `room_id`
-### GET `/get-room/:id`
+### GET `/api/get-room/:id`
     - Expects the applicable `room_id` via a param
-### GET `/get-graph`
+### GET `/api/get-graph`
     - Returns all Rooms
 
 ## Rooms Database Row
