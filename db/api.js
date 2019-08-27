@@ -24,11 +24,11 @@ async function addRoom(roomData) {
         if (room === undefined) {
             // Insert it
             room = await trx('rooms')
-                .insert(roomData)
+                .insert(roomData);
+            const newGraph = await trx('rooms')
                 .returning('*');
-            room = room[0];
             trx.commit();
-            return room;
+            return newGraph;
         } else {
             throw new Error("Room already exists")
         }
@@ -56,11 +56,11 @@ async function updateRoom(roomData) {
                 .where({
                     room_id: roomData.room_id
                 })
-                .update(roomData)
+                .update(roomData);
+            const newGraph = await trx('rooms')
                 .returning('*');
-            room = room[0];
             trx.commit();
-            return room;
+            return newGraph;
         } else {
             throw new Error("Room does not exist");
         }

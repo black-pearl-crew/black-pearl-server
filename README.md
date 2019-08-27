@@ -1,7 +1,7 @@
 # black-pearl-server
 
 ## API Endpoints
-Almost all endpoints expect an `authorization` header with the server's secret key
+Almost all endpoints expect an `Authorization` header with the server's secret key
 
 Postman Collection: https://www.getpostman.com/collections/d3f481a7a1dd71907ae7
 
