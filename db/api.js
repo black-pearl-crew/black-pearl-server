@@ -20,24 +20,21 @@ async function addRoom(roomData) {
             })
             .returning('*')
             .first();
-
         // If room doesn't exist in db
         if (room === undefined) {
             // Insert it
             room = await trx('rooms')
-                .insert({
-                    roomData
-                })
+                .insert(roomData);
+            const newGraph = await trx('rooms')
                 .returning('*');
-            room = room[0];
             trx.commit();
-            return room;
+            return newGraph;
         } else {
             throw new Error("Room already exists")
         }
     } catch (e) {
         trx.rollback();
-        return new Error(e)
+        throw new Error(e);
     }
 }
 
@@ -57,21 +54,19 @@ async function updateRoom(roomData) {
             // Update it
             room = await trx('rooms')
                 .where({
-                    room_id: roomData.id
+                    room_id: roomData.room_id
                 })
-                .update({
-                    roomData
-                })
+                .update(roomData);
+            const newGraph = await trx('rooms')
                 .returning('*');
-            room = room[0];
             trx.commit();
-            return room;
+            return newGraph;
         } else {
             throw new Error("Room does not exist");
         }
     } catch (e) {
         trx.rollback();
-        return new Error(e)
+        throw new Error(e);
     }
 }
 
@@ -93,7 +88,7 @@ async function getRoom(roomId) {
         }
 
     } catch (e) {
-        return new Error(e)
+        throw new Error(e);
     }
 }
 
@@ -103,6 +98,6 @@ async function getGraph() {
             .returning('*');
         return rooms;
     } catch (e) {
-        return new Error(e)
+        throw new Error(e);
     }
 }
