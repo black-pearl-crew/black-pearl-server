@@ -24,8 +24,6 @@ module.exports = {
     connection: {
       connection: process.env.DATABASE_URL,
       port: '6000',
-      user : 'postgres',
-      password : 'password',
       database : 'postgres'
     },
     pool: {
